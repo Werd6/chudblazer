@@ -1,0 +1,32 @@
+Sound effects from OpenGameArt (mostly via Library of Game Sounds and related CC0/CC-BY packs).
+
+Weapons
+- pistol: Chaingun/pistol/rifle/shotgun shots — Michel Baradari (CC-BY 3.0)
+  https://opengameart.org/content/chaingun-pistol-rifle-shotgun-shots
+- smg / gatling: Gunshot Sounds (CZ-52 recording slices) — Tabasco (CC0)
+  https://opengameart.org/content/gunshot-sounds
+- shotgun / remington: Gunshot Sounds (shotgun + Mosin) — Tabasco (CC0)
+- glock: Gunshots (.22 pistol) — kurt (CC0)
+  https://opengameart.org/content/gunshots
+- sword: 3 Melee Sounds — (CC0 on source page)
+  https://opengameart.org/content/3-melee-sounds
+- lightsaber: Action Shooter Soundset (synthetic laser) — WWVI / SMC (CC0)
+  https://opengameart.org/content/action-shooter-soundset-wwvi
+- noKings: Space Laser — (CC0 on source page)
+  https://opengameart.org/content/space-laser
+- meanWords: 63 Digital sound effects — Kenney (CC0)
+  https://opengameart.org/content/63-digital-sound-effects-lasers-phasers-space-etc
+- bennyBomb: bombexplosion8bit (CC0)
+  https://opengameart.org/content/bombexplosion8bit
+- squishmallow: RPG Sound Pack slime — artisticdude (CC0)
+  https://opengameart.org/content/rpg-sound-pack
+
+Enemies (hit / pain)
+- goblin / ork / troll / frankenfart: 15 Monster Grunt/Pain/Death Sounds — Michel Baradari
+  https://opengameart.org/content/15-monster-gruntpaindeath-sounds
+- king / grosstesque / ooglyBoogly: RPG Sound Pack giants/slime — artisticdude (CC0)
+
+Other
+- orange: RPG Sound Pack coin — artisticdude (CC0)
+- level-up: Levelup Sound Atmospheric — copyc4t
+  https://opengameart.org/content/levelup-sound-atmospheric

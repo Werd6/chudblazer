@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #0f0f0f;
+    touch-action: none;
+    overscroll-behavior: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+    position: relative;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 100%;
+    height: 100%;
+}
+
+#fullscreen-btn,
+#rotate-fs,
+#name-save {
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 14px;
+    color: #1a1208;
+    background: #ffa500;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+#fullscreen-btn {
+    position: absolute;
+    top: max(10px, env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
+    z-index: 30;
+    display: none;
+}
+
+body.touch-ui #fullscreen-btn {
+    display: block;
+}
+
+body.is-fullscreen #fullscreen-btn {
+    opacity: 0.55;
+}
+
+#rotate-hint {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    background: rgba(10, 14, 10, 0.92);
+    text-align: center;
+}
+
+#rotate-hint p {
+    margin: 0;
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 22px;
+    color: #ffa500;
+    text-shadow: 0 2px 0 #000;
+}
+
+body.touch-ui.portrait:not(.is-fullscreen) #rotate-hint {
+    display: flex;
+}
+
+#name-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: rgba(20, 8, 8, 0.92);
+}
+
+#name-overlay:not([hidden]) {
+    display: flex;
+}
+
+#name-overlay label {
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 28px;
+    color: #ffa500;
+    text-shadow: 0 2px 0 #000;
+}
+
+#name-input {
+    width: min(320px, 80vw);
+    padding: 12px 14px;
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 22px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    background: #1a1208;
+    border: 2px solid #ffa500;
+    border-radius: 10px;
+    outline: none;
+    touch-action: manipulation;
+    user-select: text;
+    -webkit-user-select: text;
+}

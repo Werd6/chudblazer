@@ -1,0 +1,22 @@
+{
+  "name": "chudlblazer",
+  "description": "A browser survivors-like: a capybara collects oranges and blasts chuds.",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite/config.dev.mjs",
+    "build": "tsc && vite build --config vite/config.prod.mjs",
+    "preview": "vite preview --config vite/config.prod.mjs"
+  },
+  "devDependencies": {
+    "@vercel/node": "^31.0.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.1"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.41.0",
+    "phaser": "4.2.1",
+    "terser": "^5.39.0"
+  }
+}

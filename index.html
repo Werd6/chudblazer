@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" href="/style.css">
+    <title>chudlblazer</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="game-container"></div>
+
+        <button id="fullscreen-btn" type="button" aria-label="Play fullscreen landscape">
+            Fullscreen
+        </button>
+
+        <div id="rotate-hint">
+            <p>Turn your phone sideways</p>
+            <button id="rotate-fs" type="button">Fullscreen landscape</button>
+        </div>
+
+        <div id="name-overlay" hidden>
+            <label for="name-input">NEW TOP 10!</label>
+            <input id="name-input" type="text" maxlength="12" autocomplete="off" autocapitalize="characters" enterkeyhint="done" placeholder="YOUR NAME" />
+            <button id="name-save" type="button">Save</button>
+        </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
