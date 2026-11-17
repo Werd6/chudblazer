@@ -14,7 +14,7 @@ type SubmitResult = {
 
 const API_URL = '/api/leaderboard';
 
-/** Loads the shared board from Vercel/Upstash, falling back to localStorage offline. */
+/** Loads the shared board from Vercel Blob via `/api/leaderboard`, falling back to localStorage offline. */
 export async function fetchLeaderboard (): Promise<LeaderboardEntry[]>
 {
     try
@@ -56,7 +56,7 @@ export async function qualifiesForLeaderboard (score: number): Promise<boolean>
     return oranges > entries[entries.length - 1].score;
 }
 
-/** Saves a top-10 run to Upstash (or localStorage if the API is unreachable). */
+/** Saves a top-10 run to Vercel Blob (or localStorage if the API is unreachable). */
 export async function submitScore (name: string, score: number): Promise<SubmitResult>
 {
     const oranges = Math.max(0, Math.floor(score));

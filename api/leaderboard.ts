@@ -1,9 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { Redis } from '@upstash/redis';
+import { get, put } from '@vercel/blob';
 
 type Entry = { name: string; score: number };
 
-const KEY = 'chudlblazer:leaderboard';
+const PATH = 'leaderboard/top10.json';
 const MAX_ENTRIES = 10;
 const MAX_NAME = 12;
 const MAX_SCORE = 1_000_000;
@@ -67,25 +67,40 @@ export default async function handler (req: VercelRequest, res: VercelResponse)
     }
 }
 
-function redis ()
-{
-    if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN)
-    {
-        throw new Error('Upstash Redis is not configured');
-    }
-
-    return Redis.fromEnv();
-}
-
 async function readEntries (): Promise<Entry[]>
 {
-    const raw = await redis().get<Entry[] | null>(KEY);
-    return normalize(raw);
+    try
+    {
+        const result = await get(PATH, { access: 'private', useCache: false });
+
+        if (!result?.stream)
+        {
+            return [];
+        }
+
+        const text = await new Response(result.stream).text();
+
+        if (!text)
+        {
+            return [];
+        }
+
+        return normalize(JSON.parse(text));
+    }
+    catch
+    {
+        return [];
+    }
 }
 
 async function writeEntries (entries: Entry[])
 {
-    await redis().set(KEY, entries);
+    await put(PATH, JSON.stringify(entries), {
+        access: 'private',
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: 'application/json',
+    });
 }
 
 function normalize (raw: unknown): Entry[]
