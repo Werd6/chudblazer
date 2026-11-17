@@ -16,6 +16,7 @@ class Orange
 
 export class Oranges
 {
+    /** Oldest at the front, newest at the back. */
     readonly active: Orange[] = [];
     private readonly free: Orange[] = [];
 
@@ -23,12 +24,10 @@ export class Oranges
 
     drop (x: number, y: number, value: number)
     {
-        if (this.active.length >= ORANGES.maxOnGround)
+        // Cap ground oranges by despawning the oldest so new drops always appear.
+        while (this.active.length >= ORANGES.maxOnGround)
         {
-            const target = this.active[Math.floor(Math.random() * this.active.length)];
-            target.value += value;
-            target.sprite.setScale(Math.min(ORANGES.maxScale, target.sprite.scale + ORANGES.mergeScale));
-            return;
+            this.release(0);
         }
 
         const orange = this.free.pop() ?? new Orange(this.scene);
@@ -83,12 +82,11 @@ export class Oranges
 
     private release (index: number)
     {
-        const orange = this.active[index];
-        const last = this.active.pop()!;
+        const [orange] = this.active.splice(index, 1);
 
-        if (index < this.active.length)
+        if (!orange)
         {
-            this.active[index] = last;
+            return;
         }
 
         orange.sprite.setActive(false).setVisible(false);

@@ -361,7 +361,8 @@ export const xpToNextLevel = (level: number) => (level + 3) ** 2;
 
 export const LEVEL_UP = {
     choices: 3,
-    inputDelaySeconds: 0.3,
+    /** Wait this long before level-up cards accept taps (avoids joystick finger-up picks). */
+    inputDelaySeconds: 2,
     guaranteeWeaponBelowGuns: 3,
     /** Offer weight of each stat card; weapons use RARITY[...].offerWeight. */
     statOfferWeight: 1.2,

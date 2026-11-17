@@ -4,11 +4,10 @@ import { DEPTH, VIEW_HEIGHT, VIEW_WIDTH } from '../config';
 const BASE_RADIUS = 54;
 const THUMB_RADIUS = 24;
 const DEAD_ZONE = 8;
-/** Left portion of the view that can start the stick. */
-const ZONE_WIDTH = VIEW_WIDTH * 0.48;
+const EDGE = BASE_RADIUS + 8;
 
 /**
- * Dynamic virtual stick: touch anywhere on the left side of the screen to move.
+ * Dynamic virtual stick: touch anywhere on the screen to move.
  * Fixed to the camera; only created on touch devices.
  */
 export class VirtualJoystick
@@ -37,7 +36,7 @@ export class VirtualJoystick
             .setDepth(DEPTH.hud + 1)
             .setVisible(false);
 
-        this.zone = scene.add.zone(ZONE_WIDTH / 2, VIEW_HEIGHT / 2, ZONE_WIDTH, VIEW_HEIGHT)
+        this.zone = scene.add.zone(VIEW_WIDTH / 2, VIEW_HEIGHT / 2, VIEW_WIDTH, VIEW_HEIGHT)
             .setScrollFactor(0)
             .setDepth(DEPTH.hud - 1)
             .setInteractive();
@@ -58,8 +57,8 @@ export class VirtualJoystick
         }
 
         this.pointerId = pointer.id;
-        this.originX = PMath.Clamp(pointer.x, BASE_RADIUS + 8, ZONE_WIDTH - BASE_RADIUS - 8);
-        this.originY = PMath.Clamp(pointer.y, BASE_RADIUS + 8, VIEW_HEIGHT - BASE_RADIUS - 8);
+        this.originX = PMath.Clamp(pointer.x, EDGE, VIEW_WIDTH - EDGE);
+        this.originY = PMath.Clamp(pointer.y, EDGE, VIEW_HEIGHT - EDGE);
 
         this.base.setPosition(this.originX, this.originY).setVisible(true);
         this.thumb.setPosition(this.originX, this.originY).setVisible(true);

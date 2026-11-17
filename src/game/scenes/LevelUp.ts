@@ -131,16 +131,29 @@ export class LevelUp extends Scene
 
         container.add(children);
 
+        // Require press+release after the grace period so a lingering joystick finger-up can't pick.
+        let armed = false;
+
         bg.setInteractive({ useHandCursor: true });
         bg.on('pointerover', () => {
             bg.setStrokeStyle(4, 0xffffff);
             container.setScale(1.04);
         });
         bg.on('pointerout', () => {
+            armed = false;
             bg.setStrokeStyle(3, card.color);
             container.setScale(1);
         });
-        bg.on('pointerup', () => this.pick(index));
+        bg.on('pointerdown', () => {
+            armed = this.ready && !this.picked;
+        });
+        bg.on('pointerup', () => {
+            if (armed)
+            {
+                armed = false;
+                this.pick(index);
+            }
+        });
     }
 
     pick (index: number)
