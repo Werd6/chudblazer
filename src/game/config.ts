@@ -121,25 +121,26 @@ export type ChudDef = {
     bossName?: string;
 };
 
-// Separation only checks neighbouring grid cells, so any two radii must sum to <= GRID_CELL_SIZE.
+// Separation only checks neighbouring grid cells, so any two horde radii must sum to <= GRID_CELL_SIZE.
+// Goblins stay tiny; everything else steps up the size ladder. Bosses are huge (and skip separation).
 export const CHUDS: Record<ChudKind, ChudDef> = {
     goblin: { texture: TEXTURES.goblin, radius: 8, spriteSize: 26, speed: 95, hp: 10, contactDamage: 6, xp: 1, unlockAt: 0, weight: 1 },
-    ork: { texture: TEXTURES.ork, radius: 14, spriteSize: 44, speed: 70, hp: 30, contactDamage: 12, xp: 3, unlockAt: 20, weight: 0.6 },
-    troll: { texture: TEXTURES.troll, radius: 24, spriteSize: 70, speed: 45, hp: 90, contactDamage: 20, xp: 8, unlockAt: 60, weight: 0.3 },
+    ork: { texture: TEXTURES.ork, radius: 20, spriteSize: 64, speed: 70, hp: 30, contactDamage: 12, xp: 3, unlockAt: 20, weight: 0.6 },
+    troll: { texture: TEXTURES.troll, radius: 36, spriteSize: 110, speed: 45, hp: 90, contactDamage: 20, xp: 8, unlockAt: 60, weight: 0.3 },
     king: {
-        texture: TEXTURES.kingStinky, radius: 40, spriteSize: 150, speed: 40, hp: 1500, contactDamage: 28, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.kingStinky, radius: 72, spriteSize: 280, speed: 40, hp: 1500, contactDamage: 28, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'King Stinky the Poop Dragon',
     },
     frankenfart: {
-        texture: TEXTURES.frankenfart, radius: 40, spriteSize: 150, speed: 50, hp: 2200, contactDamage: 32, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.frankenfart, radius: 78, spriteSize: 300, speed: 50, hp: 2200, contactDamage: 32, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'Frankenfart',
     },
     ooglyBoogly: {
-        texture: TEXTURES.ooglyBoogly, radius: 30, spriteSize: 130, speed: 75, hp: 1600, contactDamage: 24, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.ooglyBoogly, radius: 58, spriteSize: 230, speed: 75, hp: 1600, contactDamage: 24, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'ooglyBoogly',
     },
     grosstesque: {
-        texture: TEXTURES.grosstesque, radius: 40, spriteSize: 165, speed: 35, hp: 3500, contactDamage: 40, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.grosstesque, radius: 96, spriteSize: 360, speed: 35, hp: 3500, contactDamage: 40, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'Grosstesque',
     },
 };
@@ -567,4 +568,5 @@ export const SEPARATION = {
     maxPushPerFrame: 4,
 };
 
-export const GRID_CELL_SIZE = 64;
+/** Must be >= largest two horde radii combined (ork + troll). Bosses skip separation. */
+export const GRID_CELL_SIZE = 96;
