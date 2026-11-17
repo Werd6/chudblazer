@@ -18,8 +18,8 @@ export const PLAYER = {
     levelUpHeal: 0.25,
     hitTint: 0xff3b3b,
     dodgeTint: 0x7ec8ff,
-    /** On a lifesteal proc, heal this fraction of the damage that hit landed. */
-    lifestealHealFraction: 0.5,
+    /** Flat HP restored on each lifesteal proc. */
+    lifestealHeal: 1,
     /** Invuln granted after burning an extra life. */
     extraLifeInvulnSeconds: 2,
     /** HP restored to this fraction of max when an extra life triggers. */
