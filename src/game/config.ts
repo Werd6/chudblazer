@@ -125,22 +125,22 @@ export type ChudDef = {
 // Goblins stay tiny; everything else steps up the size ladder. Bosses are huge (and skip separation).
 export const CHUDS: Record<ChudKind, ChudDef> = {
     goblin: { texture: TEXTURES.goblin, radius: 8, spriteSize: 26, speed: 95, hp: 10, contactDamage: 6, xp: 1, unlockAt: 0, weight: 1 },
-    ork: { texture: TEXTURES.ork, radius: 20, spriteSize: 64, speed: 70, hp: 30, contactDamage: 12, xp: 3, unlockAt: 20, weight: 0.6 },
-    troll: { texture: TEXTURES.troll, radius: 36, spriteSize: 110, speed: 45, hp: 90, contactDamage: 20, xp: 8, unlockAt: 60, weight: 0.3 },
+    ork: { texture: TEXTURES.ork, radius: 20, spriteSize: 64, speed: 70, hp: 120, contactDamage: 12, xp: 3, unlockAt: 20, weight: 0.6 },
+    troll: { texture: TEXTURES.troll, radius: 36, spriteSize: 110, speed: 45, hp: 420, contactDamage: 20, xp: 8, unlockAt: 60, weight: 0.3 },
     king: {
-        texture: TEXTURES.kingStinky, radius: 72, spriteSize: 280, speed: 40, hp: 1500, contactDamage: 28, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.kingStinky, radius: 72, spriteSize: 280, speed: 40, hp: 6000, contactDamage: 28, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'King Stinky the Poop Dragon',
     },
     frankenfart: {
-        texture: TEXTURES.frankenfart, radius: 78, spriteSize: 300, speed: 50, hp: 2200, contactDamage: 32, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.frankenfart, radius: 78, spriteSize: 300, speed: 50, hp: 9000, contactDamage: 32, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'Frankenfart',
     },
     ooglyBoogly: {
-        texture: TEXTURES.ooglyBoogly, radius: 58, spriteSize: 230, speed: 75, hp: 1600, contactDamage: 24, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.ooglyBoogly, radius: 58, spriteSize: 230, speed: 75, hp: 7000, contactDamage: 24, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'ooglyBoogly',
     },
     grosstesque: {
-        texture: TEXTURES.grosstesque, radius: 96, spriteSize: 360, speed: 35, hp: 3500, contactDamage: 40, xp: 0, unlockAt: Infinity, weight: 0,
+        texture: TEXTURES.grosstesque, radius: 96, spriteSize: 360, speed: 35, hp: 16000, contactDamage: 40, xp: 0, unlockAt: Infinity, weight: 0,
         bossName: 'Grosstesque',
     },
 };
