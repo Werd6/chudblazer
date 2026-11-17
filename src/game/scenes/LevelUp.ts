@@ -26,6 +26,8 @@ export class LevelUp extends Scene
     private payload: LevelUpData;
     private ready = false;
     private picked = false;
+    /** Pointers already down when the menu opened (usually the joystick finger). */
+    private readonly blockedPointers = new Set<number>();
 
     constructor ()
     {
@@ -37,11 +39,20 @@ export class LevelUp extends Scene
         this.payload = data;
         this.ready = false;
         this.picked = false;
+        this.blockedPointers.clear();
     }
 
     create ()
     {
         duckMusic();
+
+        for (const pointer of this.input.manager.pointers)
+        {
+            if (pointer.active && pointer.isDown)
+            {
+                this.blockedPointers.add(pointer.id);
+            }
+        }
 
         const { level, cards, statsLine, mythical } = this.payload;
         const cx = VIEW_WIDTH / 2;
@@ -131,7 +142,8 @@ export class LevelUp extends Scene
 
         container.add(children);
 
-        // Require press+release after the grace period so a lingering joystick finger-up can't pick.
+        // Fresh press+release after the grace period only — a joystick finger already
+        // on-screen when this menu opened cannot confirm a card when it lifts.
         let armed = false;
 
         bg.setInteractive({ useHandCursor: true });
@@ -144,10 +156,23 @@ export class LevelUp extends Scene
             bg.setStrokeStyle(3, card.color);
             container.setScale(1);
         });
-        bg.on('pointerdown', () => {
-            armed = this.ready && !this.picked;
+        bg.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+            if (this.blockedPointers.has(pointer.id) || !this.ready || this.picked)
+            {
+                armed = false;
+                return;
+            }
+
+            armed = true;
         });
-        bg.on('pointerup', () => {
+        bg.on('pointerup', (pointer: Phaser.Input.Pointer) => {
+            if (this.blockedPointers.has(pointer.id))
+            {
+                this.blockedPointers.delete(pointer.id);
+                armed = false;
+                return;
+            }
+
             if (armed)
             {
                 armed = false;
