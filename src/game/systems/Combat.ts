@@ -31,7 +31,7 @@ export class Combat
         if (dealt > 0 && this.player.stats.lifesteal > 0
             && Math.random() < Math.min(1, this.player.stats.lifesteal))
         {
-            this.player.heal(1);
+            this.player.heal(PLAYER.lifestealHeal);
         }
 
         if (chud.takeDamage(damage))
